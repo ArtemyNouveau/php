@@ -49,7 +49,7 @@ const HEADER = 'Sample text';
             <li>
                 <div class="collapsible-header" tabindex="0">
                     Sixth task
-                    <span class="badge">2</span>
+                    <span class="badge">1</span>
                 </div>
                 <div class="collapsible-body" style="display: block;"><p>
                         7<sup>4</sup> =

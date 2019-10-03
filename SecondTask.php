@@ -1,7 +1,8 @@
 <?php
 $a = random_int(0, 9);
 
-echo '$a is more less than: ';
+echo '$a = ';
+echo "$a is more than: ";
 switch ($a) {
     case 0:
         echo '0, ';

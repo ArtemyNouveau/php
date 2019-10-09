@@ -1,31 +1,21 @@
 <?php
-$a = random_int(0, 9);
 
-echo '$a = ';
-echo "$a is more than: ";
-switch ($a) {
-    case 0:
-        echo '0, ';
-    case 1:
-        echo '1, ';
-    case 2:
-        echo '2, ';
-    case 3:
-        echo '3, ';
-    case 4:
-        echo '4, ';
-    case 5:
-        echo '5, ';
-    case 6:
-        echo '6, ';
-    case 7:
-        echo '7, ';
-    case 8:
-        echo '8, ';
-    case 9:
-        echo '9, ';
-    case 10:
-        echo '10';
-    default:
-        echo '...';
-}
+$i = -1;
+
+do {
+    $i++;
+    if ($i == 0) {
+        echo "$i is Zero</br>";
+        continue;
+    }
+    switch ($i % 2){
+        case 0:
+            echo "$i is even</br>";
+            break;
+        case 1:
+            echo "$i is not even</br>";
+            break;
+        default:
+            echo "Something wrong with number '$i'</br>";
+    }
+} while ($i < 10);

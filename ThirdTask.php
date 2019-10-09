@@ -1,17 +1,22 @@
 <?php
-function plus(int $a, int $b) : float {
-    return $a+$b;
-}
+$regions = [];
+$regions['Московская'] = [
+    'Москва', 'Зеленоград', 'Клин'
+];
+$regions['Ленинградская'] = [
+    'Санкт-Петербург', 'Всеволожск', 'Павловск', 'Кронштадт'
+];
+$regions['Рязанская'] = [
+    'Касимов', 'Скопин', 'Сасово', 'Ряжск'
+];
 
-function minus(int $a, int $b) : float {
-    return $a-$b;
-}
 
-function multiply(int $a, int $b) : float {
-    return $a*$b;
-}
-
-function div(int $a, int $b) : float {
-    if ($b == 0) return 0;
-    return $a/$b;
+foreach ($regions as $key => $innerArr)
+{
+    echo "Область $key".PHP_EOL;
+    echo 'Города:';
+    foreach ($innerArr as $val){
+        echo ", $val";
+   }
+    echo ". </br>";
 }

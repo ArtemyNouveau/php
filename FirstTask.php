@@ -1,19 +1,12 @@
 <?php
-include_once 'FourthTask.php';
 
-$a = mt_rand(-10, 10);
-$b = mt_rand(-10, 10);
+function getNums($left, $right, $num){
+    if ($left > $right) return;
 
-if ($a >= 0 && $b >= 0) {
-    echo "$a - $b = ";
-    echo calc($a, '-', $b);
-} elseif ($a < 0 && $b < 0) {
-    echo "($a) * ($b) = ";
-    echo calc($a, '*', $b);
-} elseif ($a < 0) {
-    echo "$a + $b = ";
-    echo calc($a, '+', $b);
-} else {
-    echo "$b + $a = ";
-    echo calc($a, '+', $b);
+    while ($left < $right){
+        if (($left % $num) == 0) echo "$left, ";
+        $left++;
+    }
 }
+
+getNums(3, 20, 4);

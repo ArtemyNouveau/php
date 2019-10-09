@@ -48,6 +48,33 @@ const HEADER = 'Sample text';
             </li>
             <li>
                 <div class="collapsible-header" tabindex="0">
+                    Third task
+                    <span class="badge">3</span>
+                </div>
+                <div class="collapsible-body" style="display: block;"><p>
+                        <?php include_once 'ThirdTask.php' ?>
+                    </p></div>
+            </li>
+            <li>
+                <div class="collapsible-header" tabindex="0">
+                    Fourth task
+                    <span class="badge">4</span>
+                </div>
+                <div class="collapsible-body" style="display: block;"><p>
+                        <?php include_once 'FourthTask.php' ?>
+                    </p></div>
+            </li>
+            <li>
+                <div class="collapsible-header" tabindex="0">
+                    Fifth task
+                    <span class="badge">5</span>
+                </div>
+                <div class="collapsible-body" style="display: block;"><p>
+                        <?php include_once 'FithTask.php' ?>
+                    </p></div>
+            </li>
+            <li>
+                <div class="collapsible-header" tabindex="0">
                     Sixth task
                     <span class="badge">1</span>
                 </div>
@@ -57,6 +84,15 @@ const HEADER = 'Sample text';
                         include_once 'SixthTask.php';
                         echo power(7, 4);
                         ?>
+                    </p></div>
+            </li>
+            <li>
+                <div class="collapsible-header" tabindex="0">
+                    Sixth task
+                    <span class="badge">1</span>
+                </div>
+                <div class="collapsible-body" style="display: block;"><p>
+                        <?php include_once 'SeventhTask.php' ?>
                     </p></div>
             </li>
         </ul>

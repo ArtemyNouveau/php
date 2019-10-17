@@ -8,3 +8,5 @@ define('ENGINE_DIR', ROOT_DIR.'/engine/');
 define('PUBLIC_DIR', ROOT_DIR.'/public/');
 define('CONFIG_DIR', ROOT_DIR.'/config/');
 define('TEMPLATES_DIR', ROOT_DIR.'/templates/');
+define('DB_DIR', ENGINE_DIR.'/dbControllers/');
+

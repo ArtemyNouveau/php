@@ -1,8 +1,11 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
 include_once './engine/autoload.php';
-
 autoLoad('config');
+//autoLoad('./engine/dbControllers');
+include_once './engine/dbControllers/db.php';
+include_once './engine/dbControllers/catImgController.php';
+include_once './engine/dbControllers/catInfoController.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,15 +29,16 @@ autoLoad('config');
 </head>
 <body>
 <header>
-    <?php include_once 'templates/navbar.php'?>
+    <?php include_once TEMPLATES_DIR.'navbar.php'?>
 </header>
 <main>
     <div class="container">
-        <?php include_once 'engine/galery.php' ?>
+        <?php include_once ENGINE_DIR . 'gallery/galery.php' ?>
+        <?php var_dump(getCatsWithIMG())?>
     </div>
 </main>
 
-<?php include_once 'templates/footer.php'?>
+<?php include_once TEMPLATES_DIR.'footer.php'?>
 </body>
-<?php include_once 'templates/scripts.php'?>
+<?php include_once TEMPLATES_DIR.'scripts.php'?>
 </html>

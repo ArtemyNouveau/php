@@ -7,7 +7,7 @@ if (!file_exists($dir)) {
 $aFiles = scandir($dir);
 
 include_once "GaleryItem.php";
-$galery = new GaleryItem();
+$galery = new GaleryItem(CATS_DIR);
 
 foreach ($aFiles as $key => $fileName) {
     $cats[$key] = new CatItem($fileName);

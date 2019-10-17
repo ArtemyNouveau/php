@@ -7,10 +7,10 @@ class GaleryItem
 
     /**
      * GaleryItem constructor.
+     * @param string $dir
      */
-    public function __construct()
+    public function __construct(string $dir)
     {
-        $dir = CATS_DIR;
         if (!file_exists($dir)) {
             echo "Папка <b>{$dir}</b> не существует!";
             $this->cats[] = new CatItem('404.jpg');
@@ -25,6 +25,4 @@ class GaleryItem
                 $this->cats[$key] = new CatItem($fileName);
         }
     }
-
-
 }

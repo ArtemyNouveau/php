@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: artno
- * Date: 13.10.2019
- * Time: 21:52
- */
 
 class CatItem
 {

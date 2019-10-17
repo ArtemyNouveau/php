@@ -1,6 +1,5 @@
 <?php
 include_once "CatItem.php";
-include_once "const.php";
 
 class GaleryItem
 {

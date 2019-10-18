@@ -6,12 +6,13 @@ if (!file_exists($dir)) {
 }
 $aFiles = scandir($dir);
 
-include_once "GaleryItem.php";
-$galery = new GaleryItem(CATS_DIR);
+require_once "GaleryItem.php";
+$galery = new GaleryItem($aFiles);
 
-foreach ($aFiles as $key => $fileName) {
-    $cats[$key] = new CatItem($fileName);
-}
+//foreach ($aFiles as $key => $fileName) {
+//    $cats[$key] = new CatItem($fileName);
+//}
+var_dump($galery);
 ?>
 <div class="row">
     <?php foreach ($galery->cats as $key => $cat) : ?>
@@ -19,24 +20,56 @@ foreach ($aFiles as $key => $fileName) {
             <div class="card">
                 <div class="card-image">
                     <img src="
-                    <?php
-                    if (strpos($cat->picName, '404') === 0)
-                        echo IMG_DIR . $cat->picName;
-                    else echo CATS_DIR . $cat->picName
+                    <?=
+                    CATS_DIR . $cat->getMainPic()
                     ?>">
-                    <span class="card-title"><?= explode('.', $cat->picName)[0] ?></span>
+                    <span class="card-title"><?= $cat->name ?></span>
                     <a class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"
                        href="#modal<?= $key ?>"><i class="material-icons">add</i></a>
                 </div>
-                <div class="card-content">
-                    <p><a href="#">Check out my profile</a></p>
+                <div class="card-content activator">
+                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+                    <p>Look up details</p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Hi, I'm <?= $cat->name ?>!<i class="material-icons right">close</i></span>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Name:</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>Description</td>
+                            <td><?= $cat->desc ?></td>
+                        </tr>
+                        <?php if ($cat->breed) : ?>
+                        <tr>
+                            <td>Breed</td>
+                            <td><?= $cat->breed ?></td>
+                        </tr>
+                        <?php endif; ?>
+                        <?php if ($cat->dateOfBirth) : ?>
+                            <tr>
+                                <td>Age</td>
+                                <td><?= $cat->getAge() ?></td>
+                            </tr>
+                        <?php endif; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
         <div id="modal<?= $key ?>" class="modal">
             <div class="modal-content">
-                <h4><?= explode('.', $cat->picName)[0] ?></h4>
-                <img class="modalImg" src="<?= CATS_DIR . $cat->picName ?>">
+                <div class="carousel carousel-slider">
+                <?foreach ($cat->picNames as $key => $picName):?>
+                    <a class="carousel-item" href="#one!"><img src="<?= CATS_DIR.$picName?>"></a>
+                <?php endforeach;?>
+                </div>
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Nice cat</a>

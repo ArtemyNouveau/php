@@ -33,8 +33,9 @@ include_once './engine/dbControllers/catInfoController.php';
 </header>
 <main>
     <div class="container">
-        <?php include_once ENGINE_DIR . 'gallery/galery.php' ?>
-        <?php var_dump(getCatsWithIMG())?>
+        <?php
+        include_once ENGINE_DIR . 'gallery/galery.php'
+        ?>
     </div>
 </main>
 

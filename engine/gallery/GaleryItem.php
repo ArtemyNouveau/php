@@ -1,5 +1,5 @@
 <?php
-include_once "CatItem.php";
+include_once "CatItemBuilder.php";
 
 class GaleryItem
 {
@@ -7,22 +7,40 @@ class GaleryItem
 
     /**
      * GaleryItem constructor.
-     * @param string $dir
+     * @param $includeFiles
      */
-    public function __construct(string $dir)
+    public function __construct($includeFiles)
     {
-        if (!file_exists($dir)) {
-            echo "Папка <b>{$dir}</b> не существует!";
-            $this->cats[] = new CatItem('404.jpg');
-            return;
-        }
+        $this->cats = [];
 
-        $aFiles = scandir($dir);
-        unset($aFiles[0], $aFiles[1]);
-        foreach ($aFiles as $key => $fileName) {
-            if (strpos($fileName, '404') === 0) continue;
-            if (strpos(mime_content_type($dir.$fileName), 'image') === 0)
-                $this->cats[$key] = new CatItem($fileName);
+//        $aFiles = scandir($catImgDir);
+//        unset($aFiles[0], $aFiles[1]);
+//        foreach ($aFiles as $key => $fileName) {
+//            if (strpos($fileName, '404') === 0) continue;
+//            if (strpos(mime_content_type($catImgDir.$fileName), 'image') === 0)
+//                $this->cats[$key] = new CatItem($fileName);
+//        }
+        $this->buildCats(getCatsWithIMG(), $includeFiles);
+    }
+
+    public function buildCats ($queryCatsResult, $includeFiles): void {
+        $catBuilder = new CatItemBuilder();
+        foreach ($queryCatsResult as $cat) {
+            $catBuilder->reset();
+
+            $catBuilder->withID($cat['ID']);
+            $catBuilder->withName($cat['name']);
+            $catBuilder->withLikes($cat['likes']);
+            $catBuilder->withDesc($cat['description']);
+            $catBuilder->withPrice($cat['price']);
+            $catBuilder->withIsActual($cat['is_actual']);
+            $catBuilder->withBreed($cat['breed']);
+            $catBuilder->withDateOfBirth($cat['date_of_birth']);
+            $catBuilder->withPicNames($cat['img'], $includeFiles);
+
+            $catItem = $catBuilder->build();
+            if ($catItem !== false)
+                $this->cats[] = $catItem;
         }
     }
 }

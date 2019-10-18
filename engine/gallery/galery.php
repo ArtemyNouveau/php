@@ -34,13 +34,6 @@ var_dump($galery);
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">Hi, I'm <?= $cat->name ?>!<i class="material-icons right">close</i></span>
                     <table>
-                        <thead>
-                        <tr>
-                            <th>Name:</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-
                         <tbody>
                         <tr>
                             <td>Description</td>
@@ -65,9 +58,15 @@ var_dump($galery);
         </div>
         <div id="modal<?= $key ?>" class="modal">
             <div class="modal-content">
-                <div class="carousel carousel-slider">
+                <div style="min-height: 40vh; max-height: 100%"
+                        class="carousel carousel-slider center">
                 <?foreach ($cat->picNames as $key => $picName):?>
-                    <a class="carousel-item" href="#one!"><img src="<?= CATS_DIR.$picName?>"></a>
+                    <div class="carousel-item white-text"
+                    href="#<?= $key ?>!">
+                        <h2>First Panel</h2>
+                        <img src="<?= CATS_DIR.$picName?>">
+                        <p class="white-text">This is your first panel</p>
+                    </div>
                 <?php endforeach;?>
                 </div>
             </div>

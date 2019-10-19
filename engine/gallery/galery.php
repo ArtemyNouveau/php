@@ -1,5 +1,5 @@
 <?php
-$dir = './public/img/';
+$dir = PUBLIC_DIR.'img/';
 if (!file_exists($dir)) {
     echo "Папка <b>{$dir}</b> не существует!";
     exit();
@@ -9,9 +9,6 @@ $aFiles = scandir($dir);
 require_once "GaleryItem.php";
 $galery = new GaleryItem($aFiles);
 
-//foreach ($aFiles as $key => $fileName) {
-//    $cats[$key] = new CatItem($fileName);
-//}
 ?>
 <div class="row">
     <?php foreach ($galery->cats as $key => $cat) : ?>
@@ -19,9 +16,7 @@ $galery = new GaleryItem($aFiles);
             <div class="card">
                 <div class="card-image">
                     <img src="
-                    <?=
-                    CATS_DIR . $cat->getMainPic()
-                    ?>">
+                    <?= CATS_DIR . $cat->getMainPic() ?>">
                     <span class="card-title"><?= $cat->name ?></span>
                     <a class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"
                        href="#modal<?= $key ?>"><i class="material-icons">add</i></a>
@@ -58,7 +53,8 @@ $galery = new GaleryItem($aFiles);
         </div>
         <div style="max-height: 90%" id="modal<?= $key ?>" class="modal">
             <div class="modal-content">
-                <div style="min-height: 40vh; max-height: 100%"
+                <div id="car-<?=$cat->ID?>"
+                     style="min-height: 40vh; max-height: 100%"
                      class="carousel carousel-slider center">
                     <?php if (count($cat->picNames) > 1) : ?>
                         <div class="carousel-fixed-item center">
@@ -69,28 +65,33 @@ $galery = new GaleryItem($aFiles);
                                herf="#next"><i class="material-icons">keyboard_arrow_right</i></a>
                         </div>
                     <?php endif; ?>
-                    <?
-                    foreach ($cat->picNames as $key => $picName): ?>
+                    <?php foreach ($cat->picNames as $key => $picName): ?>
                         <div class="carousel-item white-text"
                              href="#!" style="background: #fafafa">
                             <p class="grey-text text-darken-4">
                                 <button onclick="like(<?=$cat->ID?>, this)"
-                                        class="btn waves-effect waves-light"
-                                        type="submit" name="action"><?=$cat->likes?>
+                                        class="like btn waves-effect waves-light"
+                                        key="<?=$cat->ID?>"
+                                        type="submit"
+                                        name="action"><?=$cat->likes?>
                                     <i class="material-icons right">thumb_up</i>
                                 </button>
                                 <button onclick="dislike(<?=$cat->ID?>, this)"
-                                        class="btn waves-effect waves-light"
-                                        type="submit" name="action"><?=$cat->dislikes?>
+                                        class="dislike btn waves-effect waves-light"
+                                        type="submit"
+                                        key="<?=$cat->ID?>"
+                                        name="action"><?=$cat->dislikes?>
                                     <i class="material-icons left">thumb_down</i>
                                 </button>
                             </p>
                             <img class="modal-img" src="<?= CATS_DIR . $picName ?>">
-                            <p class="grey-text text-darken-4">This is your first panel</p>
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
+            <script async>
+                initCarouselBtn(<?=$cat->ID?>)
+            </script>
             <div class="modal-footer">
                 <a href="#" class="modal-close waves-effect waves-green btn-flat">Nice cat</a>
             </div>

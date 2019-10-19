@@ -7,12 +7,12 @@ function getCatByID ($ID) {
     return getQueryResult("select * from catagram.cat_info where ID = $ID;");
 }
 
-function getCheepCatsFirst () {
-    return getQueryResult('select * from catagram.cat_info order by price asc;');
+function getPopularCatsFirst () {
+    return getQueryResult('select * from catagram.cat_info order by likes desc;');
 }
 
 function getCatsWithIMG () {
-    $cats = getAllCats();
+    $cats = getPopularCatsFirst();
     foreach ($cats as $key => $cat) {
         $cats[$key]['img'] = getImgByCatID($cats[$key]['ID']);
     }

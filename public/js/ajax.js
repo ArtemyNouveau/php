@@ -1,5 +1,4 @@
-function like(catID, btn) {
-    btn.classList.add("disabled");
+function like(catID) {
     $.post(
         "/engine/dbControllers/processing.php",
         {
@@ -10,12 +9,12 @@ function like(catID, btn) {
     );
     function onAjaxSuccess(likes)
     {
-        btn.innerHTML = likes + "<i class=\"material-icons right\">thumb_up</i>\n"
+        $(`[key = ${catID}]`).addClass("disabled");
+        $(`[key = ${catID}].like`).html(`${likes}<i class=\"material-icons left\">thumb_up</i>`);
     }
 }
 
-function dislike(catID, btn) {
-    btn.classList.add("disabled");
+function dislike(catID) {
     $.post(
         "/engine/dbControllers/processing.php",
         {
@@ -27,6 +26,7 @@ function dislike(catID, btn) {
 
     function onAjaxSuccess(dislikes)
     {
-        btn.innerHTML = dislikes + "<i class=\"material-icons left\">thumb_down</i>\n";
+        $(`[key = ${catID}]`).addClass("disabled");
+        $(`[key = ${catID}].dislike`).html(`${dislikes}<i class=\"material-icons left\">thumb_down</i>`);
     }
 }

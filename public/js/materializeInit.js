@@ -2,8 +2,18 @@ $( document ).ready(function() {
     $(".dropdown-trigger").dropdown();
     $('.collapsible').collapsible();
     $('.modal').modal();
-    $('.carousel.carousel-slider').carousel({
+
+    let car = $('.carousel.carousel-slider');
+    console.log(car);
+    car.carousel({
         fullWidth: true,
-        indicators: true
+        indicators: true,
     });
+    let instance = M.Carousel.getInstance(car);
+    $('.prev').click( () => {
+        instance.prev();
+    });
+    $('.next').click( () => {
+        instance.next();
+    })
 });

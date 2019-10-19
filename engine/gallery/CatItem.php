@@ -5,6 +5,7 @@ class CatItem
     var $ID;
     var $name;
     var $likes;
+    var $dislikes;
     var $desc;
     var $price;
     var $isActual;
@@ -21,6 +22,7 @@ class CatItem
         $this->ID = $catItemBuilder->ID;
         $this->name = $catItemBuilder->name;
         $this->likes = $catItemBuilder->likes;
+        $this->dislikes = $catItemBuilder->dislikes;
         $this->desc = $catItemBuilder->desc;
         $this->price = $catItemBuilder->price;
         $this->isActual = $catItemBuilder->isActual;
@@ -118,5 +120,7 @@ class CatItem
         return $interval->format('%y%');
     }
 
+    public function like(){
 
+    }
 }

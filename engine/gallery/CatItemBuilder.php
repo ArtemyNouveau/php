@@ -6,6 +6,7 @@ class catItemBuilder
     var $ID;
     var $name;
     var $likes;
+    var $dislikes;
     var $desc;
     var $price;
     var $isActual;
@@ -26,6 +27,7 @@ class catItemBuilder
         $this->ID = false;
         $this->name = false;
         $this->likes = false;
+        $this->dislikes = false;
         $this->desc = false;
         $this->price = false;
         $this->isActual = false;
@@ -58,6 +60,15 @@ class catItemBuilder
     {
         if (!is_numeric($likes)) return;
         $this->likes = intval($likes);
+    }
+
+    /**
+     * @param mixed $dislikes
+     */
+    public function withDislikes($dislikes): void
+    {
+        if (!is_numeric($dislikes)) return;
+        $this->dislikes = intval($dislikes);
     }
 
     /**
@@ -120,6 +131,7 @@ class catItemBuilder
             $this->ID !== false &&
             $this->name !== false &&
             $this->likes !== false &&
+            $this->dislikes !== false &&
             $this->desc !== false &&
             $this->price !== false &&
             $this->picNames !== false

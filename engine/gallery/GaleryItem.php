@@ -31,6 +31,7 @@ class GaleryItem
             $catBuilder->withID($cat['ID']);
             $catBuilder->withName($cat['name']);
             $catBuilder->withLikes($cat['likes']);
+            $catBuilder->withDislikes(($cat['dislikes']));
             $catBuilder->withDesc($cat['description']);
             $catBuilder->withPrice($cat['price']);
             $catBuilder->withIsActual($cat['is_actual']);

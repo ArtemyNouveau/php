@@ -2,3 +2,17 @@
     overflow: hidden;
     width: 100%;
 }
+
+.arrow-btn {
+    height: 100%;
+    border-radius: 0;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.arrow-btn:hover {
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-img {
+    object-fit: contain;
+}

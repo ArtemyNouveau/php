@@ -1,5 +1,5 @@
 <?php
-$dir = PUBLIC_DIR.'img/';
+$dir = PUBLIC_DIR . 'img/';
 if (!file_exists($dir)) {
     echo "Папка <b>{$dir}</b> не существует!";
     exit();
@@ -10,6 +10,7 @@ require_once "GaleryItem.php";
 $galery = new GaleryItem($aFiles);
 
 ?>
+<?php include_once "serachbar.php" ?>
 <div class="row">
     <?php foreach ($galery->cats as $key => $cat) : ?>
         <div class="col s12 m6 l4">
@@ -46,6 +47,10 @@ $galery = new GaleryItem($aFiles);
                                 <td><?= $cat->getAge() ?></td>
                             </tr>
                         <?php endif; ?>
+                        <tr>
+                            <td>Price</td>
+                            <td><?= $cat->price ?>$</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -53,7 +58,7 @@ $galery = new GaleryItem($aFiles);
         </div>
         <div style="max-height: 90%" id="modal<?= $key ?>" class="modal">
             <div class="modal-content">
-                <div id="car-<?=$cat->ID?>"
+                <div id="car-<?= $cat->ID ?>"
                      style="min-height: 40vh; max-height: 100%"
                      class="carousel carousel-slider center">
                     <?php if (count($cat->picNames) > 1) : ?>
@@ -69,18 +74,18 @@ $galery = new GaleryItem($aFiles);
                         <div class="carousel-item white-text"
                              href="#!" style="background: #fafafa">
                             <p class="grey-text text-darken-4">
-                                <button onclick="like(<?=$cat->ID?>, this)"
+                                <button onclick="like(<?= $cat->ID ?>, this)"
                                         class="like btn waves-effect waves-light"
-                                        key="<?=$cat->ID?>"
+                                        key="<?= $cat->ID ?>"
                                         type="submit"
-                                        name="action"><?=$cat->likes?>
+                                        name="action"><?= $cat->likes ?>
                                     <i class="material-icons right">thumb_up</i>
                                 </button>
-                                <button onclick="dislike(<?=$cat->ID?>, this)"
+                                <button onclick="dislike(<?= $cat->ID ?>, this)"
                                         class="dislike btn waves-effect waves-light"
                                         type="submit"
-                                        key="<?=$cat->ID?>"
-                                        name="action"><?=$cat->dislikes?>
+                                        key="<?= $cat->ID ?>"
+                                        name="action"><?= $cat->dislikes ?>
                                     <i class="material-icons left">thumb_down</i>
                                 </button>
                             </p>
@@ -96,6 +101,6 @@ $galery = new GaleryItem($aFiles);
                 <a href="#" class="modal-close waves-effect waves-green btn-flat">Nice cat</a>
             </div>
         </div>
-        <?php endforeach; ?>
+    <?php endforeach; ?>
 </div>
 

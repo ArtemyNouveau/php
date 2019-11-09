@@ -1,6 +1,9 @@
 <?php
+include_once DB_DIR.'db.php';
 
 function getImgByCatID ($ID) {
+    if (is_null($ID)) return null;
+
     $imgs = [];
     $queryResult = getQueryResult("select img_name from catagram.cat_img where cat_ID = $ID;");
 

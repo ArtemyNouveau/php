@@ -1,6 +1,6 @@
 function like(catID) {
     $.post(
-        "/engine/dbControllers/processing.php",
+        "/engine/ajaxCommunication/likes.php",
         {
             isLike: true,
             catID: catID

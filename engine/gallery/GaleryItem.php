@@ -20,7 +20,7 @@ class GaleryItem
 //            if (strpos(mime_content_type($catImgDir.$fileName), 'image') === 0)
 //                $this->cats[$key] = new CatItem($fileName);
 //        }
-        $this->buildCats(getCatsWithIMG(), $includeFiles);
+        $this->buildCats(getCats(), $includeFiles);
     }
 
     public function buildCats ($queryCatsResult, $includeFiles): void {

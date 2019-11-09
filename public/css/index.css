@@ -16,3 +16,17 @@
 .modal-img {
     object-fit: contain;
 }
+
+.slider-val {
+    color: #888;
+    display: block;
+    margin: 15px 0;
+}
+
+#lower-value:before {
+    content: "from: ";
+}
+
+#upper-value:before {
+    content: "to: ";
+}

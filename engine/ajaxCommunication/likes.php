@@ -1,6 +1,6 @@
 <?php
-include_once './db.php';
-include_once './catInfoController.php';
+include_once '../dbControllers/db.php';
+include_once '../dbControllers/catInfoController.php';
 
 if($_POST['isLike']){
     if ($_POST['isLike'] != 'false') {

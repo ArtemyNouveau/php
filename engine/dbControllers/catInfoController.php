@@ -1,4 +1,8 @@
 <?php
+include_once DB_DIR.'db.php';
+include DB_DIR.'catImgController.php';
+include DB_DIR.'catBreedController.php';
+
 function getAllCats () {
     return getQueryResult('select * from catagram.cat_info;');
 }
@@ -7,14 +11,47 @@ function getCatByID ($ID) {
     return getQueryResult("select * from catagram.cat_info where ID = $ID;");
 }
 
-function getPopularCatsFirst () {
-    return getQueryResult('select * from catagram.cat_info order by likes desc;');
+function getCatsByPopularity ($popularFirst) {
+    if ($popularFirst) return getQueryResult('select * from catagram.cat_info order by likes desc;');
+    return getQueryResult('select * from catagram.cat_info order by likes asc;');
 }
 
-function getCatsWithIMG () {
-    $cats = getPopularCatsFirst();
+function getCatsByPrice ($cheapFirst) {
+    if ($cheapFirst) return getQueryResult('select * from catagram.cat_info order by price asc;');
+    return getQueryResult('select * from catagram.cat_info order by price desc;');
+}
+
+function getCatsByAge ($youngFirst) {
+    if ($youngFirst) return getQueryResult('select * from catagram.cat_info order by date_of_birth asc;');
+    return getQueryResult('select * from catagram.cat_info order by date_of_birth desc;');
+}
+
+function getCats ($order = 'cheap') {
+    switch ($order) {
+        case 'cheap':
+            $cats = getCatsByPrice(true);
+            break;
+        case 'expensive':
+            $cats = getCatsByPrice(false);
+            break;
+        case 'popular':
+            $cats = getCatsByPopularity(true);
+            break;
+        case 'unpopular':
+            $cats = getCatsByPopularity(false);
+            break;
+        case 'young':
+            $cats = getCatsByAge(true);
+            break;
+        case 'old':
+            $cats = getCatsByAge(false);
+            break;
+        default:
+            $cats = getCatsByPopularity(true);
+    }
     foreach ($cats as $key => $cat) {
         $cats[$key]['img'] = getImgByCatID($cats[$key]['ID']);
+        $cats[$key]['breed'] = getBreedByID($cats[$key]['breed_ID']);
     }
     return $cats;
 }

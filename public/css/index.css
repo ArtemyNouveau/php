@@ -2,3 +2,31 @@
     overflow: hidden;
     width: 100%;
 }
+
+.arrow-btn {
+    height: 100%;
+    border-radius: 0;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.arrow-btn:hover {
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-img {
+    object-fit: contain;
+}
+
+.slider-val {
+    color: #888;
+    display: block;
+    margin: 15px 0;
+}
+
+#lower-value:before {
+    content: "from: ";
+}
+
+#upper-value:before {
+    content: "to: ";
+}

@@ -1,2 +1,4 @@
 AddDefaultCharset UTF-8
 php_value default_charset "utf-8"
+
+DirectoryIndex index.php public/index.php
